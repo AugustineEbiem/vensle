@@ -1,0 +1,48 @@
+<?php 
+//cli script for creating Models and Controllers
+//  usage: php vensle-bot make:{controller||model} {nameOfModel}
+//apologies this may seem a bit not so readable.
+// it is a cli utility, not exactly meant to be edited or worked upon
+
+if(strtok($argv[1],":")=="make"){
+    //it means we want to make something
+    $commandToExecute = strtoupper(substr($argv[1], strpos($argv[1], ":") + 1));
+    if(isset($argv[2])){
+        $name = $argv[2];
+        switch($commandToExecute){
+            case "MODEL":
+                $fileContent = "<?php
+namespace Models;
+class {$name} extends Model{
+    
+}
+                ";
+                $fileName = "src/Models/{$name}.php";
+            break;
+            case "CONTROLLER":
+                $fileContent = "<?php
+namespace Controllers;
+use Psr\Http\Message\ServerRequestInterface;
+  use Models\Functions;
+  use Models\Notifications;
+class {$name} extends ZendResponse{
+    
+}
+                ";
+                $fileName = "src/Controllers/{$name}.php";
+            break;
+        }
+        
+        if(!file_exists($fileName)){
+            $written = file_put_contents($fileName,$fileContent);
+        }else{
+            echo "FAILED!!!".PHP_EOL." The {$fileName} alreadty exists".PHP_EOL; 
+            $written = false;
+        }
+        if($written){
+            echo "SUCCESFUL!!!".PHP_EOL." {$fileName} succesfully created".PHP_EOL;
+        }
+    }
+
+
+}

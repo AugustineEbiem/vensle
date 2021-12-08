@@ -1,0 +1,24 @@
+{
+    "require": {
+        "league/route": "^4.0",
+        "zendframework/zend-diactoros": "^1.8",
+        "league/container": "^3.1",
+        "hybridauth/hybridauth": "~3.0",
+        "yabacon/paystack-php": "^2.0@dev",
+        "unicodeveloper/jusibe-php-lib": "dev-master",
+        "sendgrid/sendgrid": "~7",
+        "cloudinary/cloudinary_php": "^1.16",
+        "intervention/image": "^2.7"
+    },
+    
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "src/Controllers/",
+            "Models\\":"src/Models/",
+            "Models\\Errors\\":"src/Models/",
+            "Models\\SayoPaul\\":"src/Models/sayopaul/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
